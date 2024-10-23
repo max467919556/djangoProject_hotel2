@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Items List{% endblock %}
+
+{% block content %}
+<h1>Items List</h1>
+<ul>
+    {% for item in items %}
+        <li><a href="{% url 'item-detail' item.pk %}">{{ item.name }}</a> - ${{ item.price }}</li>
+    {% empty %}
+        <li>No items available</li>
+    {% endfor %}
+</ul>
+
+    <p>Total items: {{ items|length }}</p>
+    <p>{{ object.description|truncatechars:10 }}</p>
+    <p>{{ object.price|default:"N/A" }}</p>
+
+{% endblock %}
+
